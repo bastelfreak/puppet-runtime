@@ -1,10 +1,6 @@
 component 'libicu' do |pkg, settings, platform|
-  ## SOURCE METADATA
-  pkg.version '62.1'
+  pkg.load_from_json("configs/components/libicu.json")
   underscore_version = pkg.get_version.gsub('.', '_')
-  dash_version = pkg.get_version.gsub('.', '-')
-  pkg.md5sum '490ad9d920158e0314e10ba74ae9a150'
-  pkg.url "https://github.com/unicode-org/icu/releases/download/release-#{dash_version}/icu4c-#{underscore_version}-src.tgz"
   pkg.mirror "#{settings[:buildsources_url]}/icu4c-#{underscore_version}-src.tgz"
   pkg.dirname "icu/source"
 

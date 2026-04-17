@@ -1,6 +1,5 @@
 component "ruby-shadow" do |pkg, settings, platform|
-  pkg.url "https://github.com/apalmblad/ruby-shadow"
-  pkg.ref "refs/tags/2.5.0"
+  pkg.load_from_json("configs/components/ruby-shadow.json")
 
   pkg.build_requires "ruby-#{settings[:ruby_version]}"
   if !platform.is_cross_compiled? && platform.architecture == 'sparc'

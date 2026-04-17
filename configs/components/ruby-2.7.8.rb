@@ -1,6 +1,5 @@
 component 'ruby-2.7.8' do |pkg, settings, platform|
-  pkg.version '2.7.8'
-  pkg.sha256sum 'c2dab63cbc8f2a05526108ad419efa63a67ed4074dbbcf9fc2b1ca664cb45ba0'
+  pkg.load_from_json("configs/components/ruby-2.7.8.json")
 
   # rbconfig-update is used to munge rbconfigs after the fact.
   pkg.add_source("file://resources/files/ruby/rbconfig-update.rb")

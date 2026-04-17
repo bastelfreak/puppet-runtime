@@ -1,8 +1,5 @@
 component "virt-what" do |pkg, settings, platform|
-  pkg.version "1.25"
-  pkg.md5sum "2345f1ec5fa0836bff4071659730ac8f"
-
-  pkg.url "https://people.redhat.com/~rjones/virt-what/files/virt-what-#{pkg.get_version}.tar.gz"
+  pkg.load_from_json("configs/components/virt-what.json")
   pkg.mirror "#{settings[:buildsources_url]}/virt-what-#{pkg.get_version}.tar.gz"
 
   pkg.replaces 'pe-virt-what'

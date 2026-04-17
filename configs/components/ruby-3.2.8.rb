@@ -1,8 +1,6 @@
 # The file name of the ruby component must match the ruby_version
 component 'ruby-3.2.8' do |pkg, settings, platform|
-  pkg.version '3.2.8'
-  # https://www.ruby-lang.org/en/downloads/releases/
-  pkg.sha256sum '77acdd8cfbbe1f8e573b5e6536e03c5103df989dc05fa68c70f011833c356075'
+  pkg.load_from_json("configs/components/ruby-3.2.8.json")
 
   # rbconfig-update is used to munge rbconfigs after the fact.
   pkg.add_source("file://resources/files/ruby/rbconfig-update.rb")

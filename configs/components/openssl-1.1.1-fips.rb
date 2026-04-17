@@ -1,7 +1,5 @@
 component 'openssl-1.1.1-fips' do |pkg, settings, platform|
-  pkg.version '1.1.1k-6'
-  pkg.sha256sum 'da536944410a0cbf5c0b6ee0b8f3ec62a9121be3b72bf2819bb4395a761662aa'
-  pkg.url "https://vault.centos.org/centos/8-stream/BaseOS/Source/SPackages/openssl-#{pkg.get_version}.el8.src.rpm"
+  pkg.load_from_json("configs/components/openssl-1.1.1-fips.json")
   pkg.mirror "#{settings[:buildsources_url]}/openssl-#{pkg.get_version}.el8.src.rpm"
 
   pkg.build_requires 'rpm-build'
