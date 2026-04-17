@@ -1,5 +1,12 @@
 component "boost" do |pkg, settings, platform|
+  # Source-Related Metadata
+  # Updated to 1.82 for Windows because we have to in order to compile it
+  # under modern Cygwin, and el10 also has problems with the old 1.73.
+  # However, later versions (at least 1.87) break pxp-agent.
   pkg.load_from_json("configs/components/boost.json")
+
+  # Apparently boost doesn't use dots to version they use underscores....arg
+  pkg.url "http://downloads.sourceforge.net/project/boost/boost/#{pkg.get_version}/boost_#{pkg.get_version.gsub('.','_')}.tar.gz"
   pkg.mirror "#{settings[:buildsources_url]}/boost_#{pkg.get_version.gsub('.','_')}.tar.gz"
 
   if platform.is_solaris?
