@@ -1,3 +1,10 @@
+#####
+# Component release information:
+#   https://github.com/openssl/openssl/releases
+# Notes:
+#   2025-23-07: We are currently staying on the 3.0.x LTS stream. We will
+#   need to move to the 3.5.x LTS stream in the next year.
+#####
 component 'openssl' do |pkg, settings, platform|
   pkg.load_from_json("configs/components/openssl-3.0.json")
   pkg.mirror "#{settings[:buildsources_url]}/openssl-#{pkg.get_version}.tar.gz"
@@ -6,7 +13,7 @@ component 'openssl' do |pkg, settings, platform|
   # ENVIRONMENT, FLAGS, TARGETS
   #############################
 
-  if platform.name =~ /^(el-|redhat-|redhatfips-|fedora-)/
+  if platform.name =~ /^(amazon-|el-|redhat-|redhatfips-|fedora-)/
     pkg.build_requires 'perl-core'
   elsif platform.is_solaris?
     # perl is installed in platform definition
@@ -25,8 +32,6 @@ component 'openssl' do |pkg, settings, platform|
 
     target = platform.architecture == 'x64' ? 'mingw64' : 'mingw'
   elsif platform.is_aix?
-    raise "openssl-3.0 is not supported on older AIX" if platform.name == 'aix-7.1-ppc'
-
     # REMIND: why not PATH?
     pkg.environment 'CC', '/opt/freeware/bin/gcc'
 
@@ -38,24 +43,22 @@ component 'openssl' do |pkg, settings, platform|
   elsif platform.is_solaris?
     pkg.environment 'PATH', '/opt/csw/bin:$(PATH):/usr/local/bin:/usr/ccs/bin:/usr/sfw/bin'
     if !platform.is_cross_compiled? && platform.architecture == 'sparc'
-      pkg.environment 'CC', "/opt/pl-build-tools/bin/gcc"
+      pkg.environment 'CC', '/opt/pl-build-tools/bin/gcc'
       gcc_lib = "/opt/pl-build-tools/#{settings[:platform_triple]}/lib"
     else
-      pkg.environment 'CC', "/opt/csw/bin/gcc"
+      pkg.environment 'CC', '/opt/csw/bin/gcc'
       gcc_lib = "/opt/csw/#{settings[:platform_triple]}/lib"
     end
     cflags = "#{settings[:cflags]} -fPIC"
     ldflags = "-R#{gcc_lib} -Wl,-rpath=#{settings[:libdir]} -L#{gcc_lib}"
     target = platform.architecture =~ /86/ ? 'solaris-x86-gcc' : 'solaris-sparcv9-gcc'
   elsif platform.is_macos?
+    pkg.environment 'PATH', '$(PATH):/opt/homebrew/bin:/usr/local/bin'
+    pkg.environment 'CFLAGS', settings[:cflags]
+    pkg.environment 'CC', settings[:cc]
+    pkg.environment 'MACOSX_DEPLOYMENT_TARGET', settings[:deployment_target]
 
-    if platform.os_version.to_i >= 13 && platform.architecture == 'arm64'
-      pkg.environment 'PATH', '$(PATH):/opt/homebrew/bin:/usr/local/bin'
-    else
-      pkg.environment 'PATH', '/opt/pl-build-tools/bin:$(PATH):/usr/local/bin'
-    end
-
-    target = if platform.architecture == "arm64"
+    target = if platform.architecture == 'arm64'
                'darwin64-arm64'
              else
                'darwin64-x86_64'
@@ -64,16 +67,17 @@ component 'openssl' do |pkg, settings, platform|
     pkg.environment 'PATH', '/opt/pl-build-tools/bin:$(PATH):/usr/local/bin'
 
     ldflags = "#{settings[:ldflags]} -Wl,-z,relro"
-    if platform.architecture =~ /86$/
+    case platform.architecture
+    when /86$/
       target = 'linux-elf'
       sslflags = '386'
-    elsif platform.architecture =~ /aarch64$/
+    when /aarch64$/
       target = 'linux-aarch64'
-    elsif platform.architecture =~ /ppc64le|ppc64el/ # Little-endian
+    when /ppc64le|ppc64el/ # Little-endian
       target = 'linux-ppc64le'
-    elsif platform.architecture =~ /64$/
+    when /64$/
       target = 'linux-x86_64'
-    elsif platform.architecture == 'armhf'
+    when 'armhf'
       target = 'linux-armv4'
     end
   end
@@ -126,9 +130,7 @@ component 'openssl' do |pkg, settings, platform|
   # Individual projects may provide their own openssl configure flags:
   project_flags = settings[:openssl_extra_configure_flags] || []
   perl_exec = ''
-  if platform.is_aix?
-    perl_exec = '/opt/freeware/bin/perl'
-  end
+  perl_exec = '/opt/freeware/bin/perl' if platform.is_aix?
   configure_flags << project_flags
 
   pkg.environment 'CFLAGS', cflags
@@ -143,19 +145,19 @@ component 'openssl' do |pkg, settings, platform|
 
   build_commands = []
 
-  if platform.is_windows? && platform.architecture == "x86"
+  if platform.is_windows? && platform.architecture == 'x86'
     # mingw-w32 5.2.0 has a bug in include/winnt.h that declares GetCurrentFiber
     # with __CRT_INLINE, which results in the function not being inlined and
     # generates a linker error: undefined reference to `GetCurrentFiber'.
     # This only affects 32-bit builds
     # See https://github.com/openssl/openssl/issues/513
     # See https://github.com/mingw-w64/mingw-w64/commit/8da1aae7a7ff5bf996878dc8fe30a0e01e210e5a
-    pkg.add_source("file://resources/patches/windows/FORCEINLINE-i686-w64-mingw32-winnt.h")
+    pkg.add_source('file://resources/patches/windows/FORCEINLINE-i686-w64-mingw32-winnt.h')
     build_commands << "#{platform.patch} --dir #{settings[:gcc_root]}/#{settings[:platform_triple]} --strip=2 --fuzz=0 --ignore-whitespace --no-backup-if-mismatch < ../FORCEINLINE-i686-w64-mingw32-winnt.h"
   end
 
   build_commands << "#{platform[:make]} depend"
-  build_commands << "#{platform[:make]}"
+  build_commands << platform[:make]
 
   pkg.build do
     build_commands
@@ -170,7 +172,7 @@ component 'openssl' do |pkg, settings, platform|
 
   if platform.is_aix?
     # "Removes any currently unused modules in kernel and library memory."
-    install_commands << "slibclean"
+    install_commands << 'slibclean'
   end
 
   # Skip man and html docs
@@ -183,4 +185,3 @@ component 'openssl' do |pkg, settings, platform|
 
   pkg.install_file 'LICENSE.txt', "#{settings[:prefix]}/share/doc/openssl-#{pkg.get_version}/LICENSE"
 end
-

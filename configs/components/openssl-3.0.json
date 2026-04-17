@@ -1,5 +1,5 @@
 {
-  "version": "3.0.16",
-  "sha256sum": "57e03c50feab5d31b152af2b764f10379aecd8ee92f16c985983ce4a99f7ef86",
-  "url": "https://github.com/openssl/openssl/releases/download/openssl-3.0.16/openssl-3.0.16.tar.gz"
+  "version": "3.0.20",
+  "sha256sum": "c80a01dfc70ece4dc21168932c37739042d404d46ccc81a5986dd75314ecda6f",
+  "url": "https://github.com/openssl/openssl/releases/download/openssl-3.0.20/openssl-3.0.20.tar.gz"
 }

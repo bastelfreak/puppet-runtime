@@ -1,17 +1,22 @@
-component "virt-what" do |pkg, settings, platform|
+#####
+# Component release information:
+#   http://git.annexia.org/?p=virt-what.git;a=summary
+#   https://people.redhat.com/~rjones/virt-what/files/
+# Notes:
+#   One of the first search results for this is
+#   https://github.com/chuckleb/virt-what, which you
+#   SHOULD NOT USE as this is a fork.
+#####
+component 'virt-what' do |pkg, settings, platform|
   pkg.load_from_json("configs/components/virt-what.json")
   pkg.mirror "#{settings[:buildsources_url]}/virt-what-#{pkg.get_version}.tar.gz"
 
   pkg.replaces 'pe-virt-what'
 
   # Run-time requirements
-  unless platform.is_deb?
-    requires "util-linux"
-  end
+  requires 'util-linux' unless platform.is_deb?
 
-  if platform.is_rpm?
-    pkg.build_requires "util-linux"
-  end
+  pkg.build_requires 'util-linux' if platform.is_rpm?
 
   if platform.is_linux?
     if platform.architecture =~ /ppc64le$/
@@ -24,9 +29,9 @@ component "virt-what" do |pkg, settings, platform|
   if platform.is_cross_compiled_linux?
     host_opt = "--host #{settings[:platform_triple]}"
 
-    pkg.environment "PATH" => "/opt/pl-build-tools/bin:$$PATH:#{settings[:bindir]}"
-    pkg.environment "CFLAGS" => settings[:cflags]
-    pkg.environment "LDFLAGS" => settings[:ldflags]
+    pkg.environment 'PATH' => "/opt/pl-build-tools/bin:$$PATH:#{settings[:bindir]}"
+    pkg.environment 'CFLAGS' => settings[:cflags]
+    pkg.environment 'LDFLAGS' => settings[:ldflags]
   end
 
   pkg.configure do
