@@ -1,0 +1,794 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [2026.04.17.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.04.17.1) (2026-04-17)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.04.16.1...2026.04.17.1)
+
+**Fixed bugs:**
+
+- multi\_json: Downgrade 1.20.1-\>1.19.1 [\#156](https://github.com/OpenVoxProject/puppet-runtime/pull/156) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.04.16.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.04.16.1) (2026-04-16)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.04.15.1...2026.04.16.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1238.0 | 1.1239.0 |
+| rubygem-openvox | 8.26.0 | 8.26.1 |
+| rubygem-yard | 0.9.41 | 0.9.42 |
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-multi_json | 1.20.1 | 1.19.1 |
+
+**Merged pull requests:**
+
+- CI: Update PR: Do not add `skip-changelog` label [\#154](https://github.com/OpenVoxProject/puppet-runtime/pull/154) ([bastelfreak](https://github.com/bastelfreak))
+- Update Ruby components [\#153](https://github.com/OpenVoxProject/puppet-runtime/pull/153) ([OpenVoxProjectBot](https://github.com/OpenVoxProjectBot))
+- CI: Fix more typos [\#152](https://github.com/OpenVoxProject/puppet-runtime/pull/152) ([bastelfreak](https://github.com/bastelfreak))
+- CI: Set ruby-version to ruby [\#151](https://github.com/OpenVoxProject/puppet-runtime/pull/151) ([bastelfreak](https://github.com/bastelfreak))
+- CI: Fix typos in workflow [\#150](https://github.com/OpenVoxProject/puppet-runtime/pull/150) ([bastelfreak](https://github.com/bastelfreak))
+- CI: Fix typos in workflow [\#149](https://github.com/OpenVoxProject/puppet-runtime/pull/149) ([bastelfreak](https://github.com/bastelfreak))
+- Add CI workflow to raise gem update PRs [\#148](https://github.com/OpenVoxProject/puppet-runtime/pull/148) ([bastelfreak](https://github.com/bastelfreak))
+- Build puppet-runtime for Linux on PRs [\#101](https://github.com/OpenVoxProject/puppet-runtime/pull/101) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.04.15.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.04.15.1) (2026-04-15)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.04.09.1...2026.04.15.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1237.0 | 1.1238.0 |
+| rubygem-hiera-eyaml | 5.0.0 | 5.0.1 |
+| rubygem-multi_json | 1.19.1 | 1.20.1 |
+| rubygem-openvox | 8.25.0 | 8.26.0 |
+| rubygem-yard | 0.9.39 | 0.9.41 |
+
+**Merged pull requests:**
+
+- Update rubygem components and add signoff to update\_gems task [\#146](https://github.com/OpenVoxProject/puppet-runtime/pull/146) ([nmburgan](https://github.com/nmburgan))
+
+## [2026.04.09.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.04.09.1) (2026-04-09)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.04.05.1...2026.04.09.1)
+
+**Implemented enhancements:**
+
+- Update openfact 5.5.0-\>5.6.0 & aws-partitions 1.1236.0-\>1.1237.0 & yard 0.9.38-\>0.9.39 [\#142](https://github.com/OpenVoxProject/puppet-runtime/pull/142) ([bastelfreak](https://github.com/bastelfreak))
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| libxml2 | 2.15.1 | 2.15.2 |
+| openssl-3.0 | 3.0.19 | 3.0.20 |
+| rubygem-aws-partitions | 1.1234.0 | 1.1237.0 |
+| rubygem-aws-sdk-ec2 | 1.610.0 | 1.611.0 |
+| rubygem-openfact | 5.5.0 | 5.6.0 |
+| rubygem-yard | 0.9.38 | 0.9.39 |
+
+**Merged pull requests:**
+
+- libxml2: Update 2.15.1-\>2.15.2 [\#141](https://github.com/OpenVoxProject/puppet-runtime/pull/141) ([corporate-gadfly](https://github.com/corporate-gadfly))
+- openssl: Update 3.0.19-\>3.0.20 & update aws gems [\#140](https://github.com/OpenVoxProject/puppet-runtime/pull/140) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.04.05.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.04.05.1) (2026-04-05)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.03.19.1...2026.04.05.1)
+
+**Fixed bugs:**
+
+- Use gnu17 for clang on MacOS [\#138](https://github.com/OpenVoxProject/puppet-runtime/pull/138) ([nmburgan](https://github.com/nmburgan))
+
+**Security fixes:**
+
+- Ruby: Update 3.2.10-\>3.2.11 [\#136](https://github.com/OpenVoxProject/puppet-runtime/pull/136) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.03.19.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.03.19.1) (2026-03-19)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.03.04.1...2026.03.19.1)
+
+**Implemented enhancements:**
+
+- \[Feature request\]: Add choria-mcorpc-support gem [\#128](https://github.com/OpenVoxProject/puppet-runtime/issues/128)
+
+**Fixed bugs:**
+
+- \[Bug\]: ArgumentError when trying to use bundled `debug` gem [\#130](https://github.com/OpenVoxProject/puppet-runtime/issues/130)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| curl | 8.18.0 | 8.19.0 |
+| ruby-3.2 | 3.2.10 | 3.2.11 |
+| rubygem-addressable | 2.8.8 | 2.9.0 |
+| rubygem-aws-partitions | 1.1218.0 | 1.1234.0 |
+| rubygem-aws-sdk-core | 3.242.0 | 3.244.0 |
+| rubygem-aws-sdk-ec2 | 1.603.0 | 1.610.0 |
+| rubygem-excon | 1.3.2 | 1.4.2 |
+| rubygem-ffi | 1.17.3 | 1.17.4 |
+| rubygem-gettext | 3.5.1 | 3.5.2 |
+| rubygem-gettext-setup | 1.1.0 | 1.1.1 |
+| rubygem-locale | 2.1.4 | 2.1.5 |
+| rubygem-net-ssh | 7.3.0 | 7.3.2 |
+| rubygem-openvox-strings | 7.0.0 | 7.1.0 |
+| rubygem-public_suffix | 7.0.2 | 7.0.5 |
+| rubygem-puppet_forge | 6.1.0 | 6.2.0 |
+| rubygem-r10k | 5.0.2 | 5.0.3 |
+
+**Merged pull requests:**
+
+- Fix openbolt-runtime for Windows [\#134](https://github.com/OpenVoxProject/puppet-runtime/pull/134) ([nmburgan](https://github.com/nmburgan))
+
+## [2026.03.04.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.03.04.1) (2026-03-04)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.02.25.1...2026.03.04.1)
+
+**Implemented enhancements:**
+
+- enable Choria transport [\#129](https://github.com/OpenVoxProject/puppet-runtime/pull/129) ([marcusdots](https://github.com/marcusdots))
+
+## [2026.02.25.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.02.25.1) (2026-02-25)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.02.16.1...2026.02.25.1)
+
+**Fixed bugs:**
+
+- \[Bug\]: ruby 3.2.8 is being shipped when it should be ruby 3.2.9 [\#67](https://github.com/OpenVoxProject/puppet-runtime/issues/67)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1213.0 | 1.1218.0 |
+| rubygem-aws-sdk-ec2 | 1.601.0 | 1.603.0 |
+| rubygem-hiera-eyaml | 4.3.0 | 5.0.0 |
+| rubygem-multi_json | 1.18.0 | 1.19.1 |
+| rubygem-openfact | 5.4.0 | 5.5.0 |
+| rubygem-openvox | 8.24.2 | 8.25.0 |
+| rubygem-openvox-strings | 6.0.0 | 7.0.0 |
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-choria-mcorpc-support |  | 2.26.5 |
+| rubygem-nats-pure |  | 0.6.2 |
+| rubygem-systemu |  | 2.6.5 |
+
+**Project component additions:**
+- rubygem-choria-mcorpc-support: openbolt-runtime
+- rubygem-nats-pure: openbolt-runtime
+- rubygem-systemu: openbolt-runtime
+
+**Merged pull requests:**
+
+- gem updates aws, eyaml, multi\_json, openfact, openvox-strings [\#126](https://github.com/OpenVoxProject/puppet-runtime/pull/126) ([marcusdots](https://github.com/marcusdots))
+- Update rubygem components [\#123](https://github.com/OpenVoxProject/puppet-runtime/pull/123) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.02.16.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.02.16.1) (2026-02-16)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.02.11.1...2026.02.16.1)
+
+**Fixed bugs:**
+
+- rm: use -v instead of --verbose [\#121](https://github.com/OpenVoxProject/puppet-runtime/pull/121) ([bastelfreak](https://github.com/bastelfreak))
+- fedora pkgconf fix [\#119](https://github.com/OpenVoxProject/puppet-runtime/pull/119) ([marcusdots](https://github.com/marcusdots))
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-sdk-ec2 | 1.597.0 | 1.601.0 |
+| rubygem-openfact | 5.3.0 | 5.4.0 |
+
+**Merged pull requests:**
+
+- Update rubygem-aws-sdk-ec2 & rubygem-openfact [\#118](https://github.com/OpenVoxProject/puppet-runtime/pull/118) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.02.11.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.02.11.1) (2026-02-11)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.02.09.1...2026.02.11.1)
+
+**Implemented enhancements:**
+
+- Gem build: log deleted files [\#112](https://github.com/OpenVoxProject/puppet-runtime/pull/112) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.02.09.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.02.09.1) (2026-02-09)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.02.06.1...2026.02.09.1)
+
+**Implemented enhancements:**
+
+- Add Ubuntu 26.04 to Vanagon builds [\#114](https://github.com/OpenVoxProject/puppet-runtime/pull/114) ([bastelfreak](https://github.com/bastelfreak))
+- Update rubygem components [\#98](https://github.com/OpenVoxProject/puppet-runtime/pull/98) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.02.06.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.02.06.1) (2026-02-06)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.01.30.1...2026.02.06.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1194.0 | 1.1213.0 |
+| rubygem-aws-sdk-core | 3.239.2 | 3.242.0 |
+| rubygem-aws-sdk-ec2 | 1.585.0 | 1.597.0 |
+| rubygem-faraday | 2.14.0 | 2.14.1 |
+| rubygem-faraday-multipart | 1.1.1 | 1.2.0 |
+| rubygem-faraday-retry | 2.3.2 | 2.4.0 |
+| rubygem-ffi | 1.17.2 | 1.17.3 |
+| rubygem-http_parser.rb | 0.8.0 | 0.8.1 |
+| rubygem-net-http | 0.8.0 | 0.9.1 |
+| rubygem-net-http-persistent | 4.0.6 | 4.0.8 |
+| rubygem-openfact | 5.2.1 | 5.3.0 |
+| rubygem-public_suffix | 7.0.0 | 7.0.2 |
+| rubygem-thor | 1.4.0 | 1.5.0 |
+| rubygem-unicode-emoji | 4.1.0 | 4.2.0 |
+
+**Merged pull requests:**
+
+- Don't ship URI gem [\#111](https://github.com/OpenVoxProject/puppet-runtime/pull/111) ([nmburgan](https://github.com/nmburgan))
+
+## [2026.01.30.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.01.30.1) (2026-01-30)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.01.29.2...2026.01.30.1)
+
+**Implemented enhancements:**
+
+- Update Ruby, curl, demidecode, openssl [\#109](https://github.com/OpenVoxProject/puppet-runtime/pull/109) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.01.29.2](https://github.com/openvoxproject/puppet-runtime/tree/2026.01.29.2) (2026-01-29)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.01.29.1...2026.01.29.2)
+
+**Implemented enhancements:**
+
+- Add SLES 16 ARM64 support [\#107](https://github.com/OpenVoxProject/puppet-runtime/pull/107) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.01.29.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.01.29.1) (2026-01-29)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.01.28.1...2026.01.29.1)
+
+**Fixed bugs:**
+
+- Add SLES 16 workaround for dtrace [\#105](https://github.com/OpenVoxProject/puppet-runtime/pull/105) ([bastelfreak](https://github.com/bastelfreak))
+
+## [2026.01.28.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.01.28.1) (2026-01-28)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2026.01.24.1...2026.01.28.1)
+
+**Implemented enhancements:**
+
+- \[Feature request\]: Add SLES 16 X86\_64 builds [\#102](https://github.com/OpenVoxProject/puppet-runtime/issues/102)
+
+## [2026.01.24.1](https://github.com/openvoxproject/puppet-runtime/tree/2026.01.24.1) (2026-01-24)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.12.15.1...2026.01.24.1)
+
+**Implemented enhancements:**
+
+- Add Ubuntu 24.04 / 25.04 ARMHF support [\#99](https://github.com/OpenVoxProject/puppet-runtime/pull/99) ([bastelfreak](https://github.com/bastelfreak))
+- feat: add debian13-armhf platform config [\#97](https://github.com/OpenVoxProject/puppet-runtime/pull/97) ([Gitii](https://github.com/Gitii))
+- Add SLES16 [\#95](https://github.com/OpenVoxProject/puppet-runtime/pull/95) ([sbernhard](https://github.com/sbernhard))
+
+**Fixed bugs:**
+
+- pkgconf workaround for redhatfips [\#96](https://github.com/OpenVoxProject/puppet-runtime/pull/96) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.12.15.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.12.15.1) (2025-12-15)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.12.09.1...2025.12.15.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1190.0 | 1.1194.0 |
+| rubygem-aws-sdk-ec2 | 1.583.0 | 1.585.0 |
+| rubygem-concurrent-ruby | 1.3.5 | 1.3.6 |
+| rubygem-openfact | 5.2.0 | 5.2.1 |
+| rubygem-openvox | 8.24.1 | 8.24.2 |
+| rubygem-puppet_forge | 6.0.0 | 6.1.0 |
+| rubygem-uri | 1.1.1 | 0.12.5 |
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| curl | 8.17.0 | 8.18.0 |
+| dmidecode | 3.6 | 3.7 |
+| openssl-3.0 | 3.0.18 | 3.0.19 |
+| ruby-3.2 | 3.2.9 | 3.2.10 |
+
+**Merged pull requests:**
+
+- Don't update default or bundled gems unless we really have to [\#93](https://github.com/OpenVoxProject/puppet-runtime/pull/93) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.12.09.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.12.09.1) (2025-12-09)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.12.05.1...2025.12.09.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-aws-partitions | 1.1188.0 | 1.1190.0 |
+| rubygem-bcrypt_pbkdf | 1.1.1 | 1.1.2 |
+| rubygem-excon | 1.3.1 | 1.3.2 |
+| rubygem-faraday-follow_redirects | 0.4.0 | 0.3.0 |
+| rubygem-json | 2.16.0 | 2.17.1 |
+| rubygem-multi_json | 1.17.0 | 1.18.0 |
+| rubygem-openfact | 5.1.0 | 5.2.0 |
+| rubygem-openvox | 8.23.1 | 8.24.1 |
+| rubygem-public_suffix | 6.0.2 | 7.0.0 |
+| rubygem-rubyzip | 3.2.2 | 2.4.1 |
+| rubygem-sys-filesystem | 1.5.4 | 1.5.5 |
+| rubygem-timeout | 0.4.4 | 0.5.0 |
+| rubygem-yard | 0.9.37 | 0.9.38 |
+
+**Merged pull requests:**
+
+- Using MinGW version of curl for Windows for patron [\#91](https://github.com/OpenVoxProject/puppet-runtime/pull/91) ([nmburgan](https://github.com/nmburgan))
+- Install libcurl-devel for Windows for patron [\#90](https://github.com/OpenVoxProject/puppet-runtime/pull/90) ([nmburgan](https://github.com/nmburgan))
+- Add ruby directories to openbolt-runtime [\#89](https://github.com/OpenVoxProject/puppet-runtime/pull/89) ([nmburgan](https://github.com/nmburgan))
+- Use shared compiler settings for openbolt-runtime [\#88](https://github.com/OpenVoxProject/puppet-runtime/pull/88) ([nmburgan](https://github.com/nmburgan))
+- Update more gems [\#87](https://github.com/OpenVoxProject/puppet-runtime/pull/87) ([nmburgan](https://github.com/nmburgan))
+- Update gems and pin some back [\#84](https://github.com/OpenVoxProject/puppet-runtime/pull/84) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.12.05.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.12.05.1) (2025-12-05)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.12.03.1...2025.12.05.1)
+
+**Fixed bugs:**
+
+- Install augeas/facade.rb for modern ruby-augeas [\#85](https://github.com/OpenVoxProject/puppet-runtime/pull/85) ([ananace](https://github.com/ananace))
+
+**Merged pull requests:**
+
+- Update release automation [\#83](https://github.com/OpenVoxProject/puppet-runtime/pull/83) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.12.03.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.12.03.1) (2025-12-03)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.12.02.1...2025.12.03.1)
+
+**Implemented enhancements:**
+
+- rubygem-ruby-dbus: Add component [\#80](https://github.com/OpenVoxProject/puppet-runtime/pull/80) ([ananace](https://github.com/ananace))
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| rubygem-ruby-dbus |  | 0.25.0 |
+
+**Project component additions:**
+- rubygem-ruby-dbus: agent-runtime-main, openbolt-runtime
+
+**Merged pull requests:**
+
+- Specify pkgconf for el10 [\#81](https://github.com/OpenVoxProject/puppet-runtime/pull/81) ([nmburgan](https://github.com/nmburgan))
+- Don't add component table when there are no changes [\#79](https://github.com/OpenVoxProject/puppet-runtime/pull/79) ([nmburgan](https://github.com/nmburgan))
+- Gate win32ole gem to Windows [\#77](https://github.com/OpenVoxProject/puppet-runtime/pull/77) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.12.02.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.12.02.1) (2025-12-02)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025.09.08.1...2025.12.02.1)
+
+
+**Component Changes:**
+| Component | Old Version | New Version |
+|-----------|-------------|-------------|
+| curl | 8.15.0 | 8.17.0 |
+| libxml2 | 2.14.5 | 2.15.1 |
+| openssl-3.0 | 3.0.17 | 3.0.18 |
+| ruby-augeas | 0.5.0 | 0.6.0 |
+| ruby-selinux | 3.8.1 | 3.9 |
+| rubygem-CFPropertyList | 3.0.7 | 4.0.0 |
+| rubygem-addressable |  | 2.8.8 |
+| rubygem-aws-eventstream |  | 1.4.0 |
+| rubygem-aws-partitions |  | 1.1188.0 |
+| rubygem-aws-sdk-core |  | 3.239.2 |
+| rubygem-aws-sdk-ec2 |  | 1.583.0 |
+| rubygem-aws-sigv4 |  | 1.12.1 |
+| rubygem-bcrypt_pbkdf |  | 1.1.1 |
+| rubygem-benchmark |  | 0.5.0 |
+| rubygem-bigdecimal |  | 3.3.1 |
+| rubygem-bindata |  | 2.5.1 |
+| rubygem-builder |  | 3.3.0 |
+| rubygem-colored2 |  | 4.0.3 |
+| rubygem-connection_pool |  | 2.4.1 |
+| rubygem-cookiejar |  | 0.3.4 |
+| rubygem-cri |  | 2.15.12 |
+| rubygem-date |  | 3.5.0 |
+| rubygem-ed25519 |  | 1.4.0 |
+| rubygem-em-http-request |  | 1.1.7 |
+| rubygem-em-socksify |  | 0.3.3 |
+| rubygem-eventmachine |  | 1.2.7 |
+| rubygem-excon |  | 1.3.1 |
+| rubygem-faraday |  | 2.14.0 |
+| rubygem-faraday-em_http |  | 2.0.1 |
+| rubygem-faraday-em_synchrony |  | 1.0.1 |
+| rubygem-faraday-excon |  | 2.4.0 |
+| rubygem-faraday-follow_redirects |  | 0.4.0 |
+| rubygem-faraday-httpclient |  | 2.0.2 |
+| rubygem-faraday-multipart |  | 1.1.1 |
+| rubygem-faraday-net_http |  | 3.4.2 |
+| rubygem-faraday-net_http_persistent |  | 2.3.1 |
+| rubygem-faraday-patron |  | 2.0.2 |
+| rubygem-faraday-rack |  | 2.1.3 |
+| rubygem-faraday-retry |  | 2.3.2 |
+| rubygem-fiddle |  | 1.1.8 |
+| rubygem-forwardable |  | 1.3.3 |
+| rubygem-getoptlong |  | 0.2.1 |
+| rubygem-gettext-setup |  | 1.1.0 |
+| rubygem-gssapi |  | 1.3.1 |
+| rubygem-gyoku |  | 1.4.0 |
+| rubygem-hiera |  | 3.12.0 |
+| rubygem-http_parser.rb |  | 0.8.0 |
+| rubygem-httpclient |  | 2.9.0 |
+| rubygem-io-console |  | 0.8.1 |
+| rubygem-jmespath |  | 1.6.2 |
+| rubygem-json |  | 2.16.0 |
+| rubygem-jwt |  | 2.10.2 |
+| rubygem-little-plugger |  | 1.1.4 |
+| rubygem-log4r |  | 1.1.10 |
+| rubygem-logging |  | 2.4.0 |
+| rubygem-minitar | 0.12.1 | 1.1.0 |
+| rubygem-molinillo |  | 0.8.0 |
+| rubygem-multipart-post |  | 2.4.1 |
+| rubygem-mutex_m |  | 0.3.0 |
+| rubygem-net-ftp |  | 0.3.9 |
+| rubygem-net-http |  | 0.8.0 |
+| rubygem-net-http-persistent |  | 4.0.6 |
+| rubygem-net-protocol |  | 0.2.2 |
+| rubygem-net-scp |  | 4.1.0 |
+| rubygem-net-ssh-krb |  | 0.5.1 |
+| rubygem-nkf |  | 0.2.0 |
+| rubygem-nori |  | 2.7.1 |
+| rubygem-openfact |  | 5.1.0 |
+| rubygem-openvox |  | 8.23.1 |
+| rubygem-openvox-strings |  | 6.0.0 |
+| rubygem-orchestrator_client |  | 0.7.2 |
+| rubygem-ostruct |  | 0.6.3 |
+| rubygem-paint |  | 2.3.0 |
+| rubygem-patron |  | 0.13.4 |
+| rubygem-public_suffix |  | 6.0.2 |
+| rubygem-puppet-resource_api |  | 2.0.0 |
+| rubygem-puppet_forge |  | 6.0.0 |
+| rubygem-puppetfile-resolver |  | 0.6.3 |
+| rubygem-r10k |  | 5.0.2 |
+| rubygem-racc |  | 1.8.1 |
+| rubygem-reline |  | 0.6.3 |
+| rubygem-rexml | 3.4.2 | 3.4.4 |
+| rubygem-rgen |  | 0.10.2 |
+| rubygem-ruby2_keywords |  | 0.0.5 |
+| rubygem-ruby_smb |  | 1.1.0 |
+| rubygem-rubyntlm |  | 0.6.5 |
+| rubygem-rubyzip |  | 3.2.2 |
+| rubygem-singleton |  | 0.3.0 |
+| rubygem-sys-filesystem | 1.5.3 | 1.5.4 |
+| rubygem-terminal-table |  | 4.0.0 |
+| rubygem-time |  | 0.4.1 |
+| rubygem-timeout |  | 0.4.4 |
+| rubygem-unicode-display_width |  | 3.2.0 |
+| rubygem-unicode-emoji |  | 4.1.0 |
+| rubygem-uri |  | 1.1.1 |
+| rubygem-webrick |  | 1.9.2 |
+| rubygem-win32ole |  | 1.9.2 |
+| rubygem-windows_error |  | 0.1.5 |
+| rubygem-winrm |  | 2.3.9 |
+| rubygem-winrm-fs |  | 1.3.5 |
+| rubygem-yard |  | 0.9.37 |
+
+**Project component additions:**
+- rubygem-addressable: openbolt-runtime
+- rubygem-aws-eventstream: openbolt-runtime
+- rubygem-aws-partitions: openbolt-runtime
+- rubygem-aws-sdk-core: openbolt-runtime
+- rubygem-aws-sdk-ec2: openbolt-runtime
+- rubygem-aws-sigv4: openbolt-runtime
+- rubygem-bcrypt_pbkdf: openbolt-runtime
+- rubygem-benchmark: openbolt-runtime
+- rubygem-bigdecimal: openbolt-runtime
+- rubygem-bindata: openbolt-runtime
+- rubygem-builder: openbolt-runtime
+- rubygem-colored2: openbolt-runtime
+- rubygem-connection_pool: openbolt-runtime
+- rubygem-cookiejar: openbolt-runtime
+- rubygem-cri: openbolt-runtime
+- rubygem-date: agent-runtime-main, openbolt-runtime
+- rubygem-ed25519: openbolt-runtime
+- rubygem-em-http-request: openbolt-runtime
+- rubygem-em-socksify: openbolt-runtime
+- rubygem-eventmachine: openbolt-runtime
+- rubygem-excon: openbolt-runtime
+- rubygem-faraday: openbolt-runtime
+- rubygem-faraday-em_http: openbolt-runtime
+- rubygem-faraday-em_synchrony: openbolt-runtime
+- rubygem-faraday-excon: openbolt-runtime
+- rubygem-faraday-follow_redirects: openbolt-runtime
+- rubygem-faraday-httpclient: openbolt-runtime
+- rubygem-faraday-multipart: openbolt-runtime
+- rubygem-faraday-net_http: openbolt-runtime
+- rubygem-faraday-net_http_persistent: openbolt-runtime
+- rubygem-faraday-patron: openbolt-runtime
+- rubygem-faraday-rack: openbolt-runtime
+- rubygem-faraday-retry: openbolt-runtime
+- rubygem-fiddle: agent-runtime-main, openbolt-runtime
+- rubygem-forwardable: agent-runtime-main, openbolt-runtime
+- rubygem-getoptlong: openbolt-runtime
+- rubygem-gettext-setup: openbolt-runtime
+- rubygem-gssapi: openbolt-runtime
+- rubygem-gyoku: openbolt-runtime
+- rubygem-hiera: openbolt-runtime
+- rubygem-http_parser.rb: openbolt-runtime
+- rubygem-httpclient: openbolt-runtime
+- rubygem-io-console: agent-runtime-main, openbolt-runtime
+- rubygem-jmespath: openbolt-runtime
+- rubygem-json: openbolt-runtime
+- rubygem-jwt: openbolt-runtime
+- rubygem-little-plugger: openbolt-runtime
+- rubygem-log4r: openbolt-runtime
+- rubygem-logging: openbolt-runtime
+- rubygem-molinillo: openbolt-runtime
+- rubygem-multipart-post: openbolt-runtime
+- rubygem-mutex_m: openbolt-runtime
+- rubygem-net-ftp: agent-runtime-main, openbolt-runtime
+- rubygem-net-http: openbolt-runtime
+- rubygem-net-http-persistent: openbolt-runtime
+- rubygem-net-protocol: agent-runtime-main, openbolt-runtime
+- rubygem-net-scp: openbolt-runtime
+- rubygem-net-ssh-krb: openbolt-runtime
+- rubygem-nkf: agent-runtime-main, openbolt-runtime
+- rubygem-nori: openbolt-runtime
+- rubygem-openfact: openbolt-runtime
+- rubygem-openvox: openbolt-runtime
+- rubygem-openvox-strings: openbolt-runtime
+- rubygem-orchestrator_client: openbolt-runtime
+- rubygem-ostruct: openbolt-runtime
+- rubygem-paint: openbolt-runtime
+- rubygem-patron: openbolt-runtime
+- rubygem-public_suffix: openbolt-runtime
+- rubygem-puppet-resource_api: openbolt-runtime
+- rubygem-puppet_forge: openbolt-runtime
+- rubygem-puppetfile-resolver: openbolt-runtime
+- rubygem-r10k: openbolt-runtime
+- rubygem-racc: agent-runtime-main, openbolt-runtime
+- rubygem-reline: agent-runtime-main, openbolt-runtime
+- rubygem-rgen: openbolt-runtime
+- rubygem-ruby2_keywords: openbolt-runtime
+- rubygem-ruby_smb: openbolt-runtime
+- rubygem-rubyntlm: openbolt-runtime
+- rubygem-rubyzip: openbolt-runtime
+- rubygem-singleton: agent-runtime-main, openbolt-runtime
+- rubygem-terminal-table: openbolt-runtime
+- rubygem-time: agent-runtime-main, openbolt-runtime
+- rubygem-timeout: agent-runtime-main, openbolt-runtime
+- rubygem-unicode-display_width: openbolt-runtime
+- rubygem-unicode-emoji: openbolt-runtime
+- rubygem-uri: openbolt-runtime
+- rubygem-webrick: openbolt-runtime
+- rubygem-win32ole: agent-runtime-main, openbolt-runtime
+- rubygem-windows_error: openbolt-runtime
+- rubygem-winrm: openbolt-runtime
+- rubygem-winrm-fs: openbolt-runtime
+- rubygem-yard: openbolt-runtime
+
+**Merged pull requests:**
+
+- Show errors during shell commands in update\_component\_info [\#75](https://github.com/OpenVoxProject/puppet-runtime/pull/75) ([nmburgan](https://github.com/nmburgan))
+- Add tasks for generating component info and adding to changelog [\#72](https://github.com/OpenVoxProject/puppet-runtime/pull/72) ([nmburgan](https://github.com/nmburgan))
+- Update components and update\_gems script [\#70](https://github.com/OpenVoxProject/puppet-runtime/pull/70) ([nmburgan](https://github.com/nmburgan))
+- Add update\_gems rake task and rename bolt -\> openbolt [\#68](https://github.com/OpenVoxProject/puppet-runtime/pull/68) ([nmburgan](https://github.com/nmburgan))
+- Add switch for uploading to S3 [\#62](https://github.com/OpenVoxProject/puppet-runtime/pull/62) ([nmburgan](https://github.com/nmburgan))
+
+## [2025.09.08.1](https://github.com/openvoxproject/puppet-runtime/tree/2025.09.08.1) (2025-09-08)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025-09-04-1...2025.09.08.1)
+
+**Merged pull requests:**
+
+- Roll back fast\_gettext to 2.4.0 [\#59](https://github.com/OpenVoxProject/puppet-runtime/pull/59) ([nmburgan](https://github.com/nmburgan))
+- Change version format to use periods [\#57](https://github.com/OpenVoxProject/puppet-runtime/pull/57) ([nmburgan](https://github.com/nmburgan))
+
+## [2025-09-04-1](https://github.com/openvoxproject/puppet-runtime/tree/2025-09-04-1) (2025-09-04)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025-08-23-1...2025-09-04-1)
+
+**Merged pull requests:**
+
+- Remove duplicated permissions block in build.yml [\#55](https://github.com/OpenVoxProject/puppet-runtime/pull/55) ([nmburgan](https://github.com/nmburgan))
+- Change windows-2019-x64 -\> windows-all-x64 and fix upload task [\#54](https://github.com/OpenVoxProject/puppet-runtime/pull/54) ([nmburgan](https://github.com/nmburgan))
+- Changes to enable building all MacOS types on any MacOS host [\#53](https://github.com/OpenVoxProject/puppet-runtime/pull/53) ([nmburgan](https://github.com/nmburgan))
+- \[CVE-2025-2588\] patch augeas to return \_REG\_ENOSYS [\#52](https://github.com/OpenVoxProject/puppet-runtime/pull/52) ([binford2k](https://github.com/binford2k))
+- Update components and remove PDK and client tools runtimes [\#35](https://github.com/OpenVoxProject/puppet-runtime/pull/35) ([nmburgan](https://github.com/nmburgan))
+
+## [2025-08-23-1](https://github.com/openvoxproject/puppet-runtime/tree/2025-08-23-1) (2025-08-23)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025-08-21-1...2025-08-23-1)
+
+**Merged pull requests:**
+
+- Remove EOL platforms and bump puppet-ca-bundle [\#49](https://github.com/OpenVoxProject/puppet-runtime/pull/49) ([nmburgan](https://github.com/nmburgan))
+- Update webrick [\#48](https://github.com/OpenVoxProject/puppet-runtime/pull/48) ([binford2k](https://github.com/binford2k))
+- OSX non-root user build changes [\#44](https://github.com/OpenVoxProject/puppet-runtime/pull/44) ([shaun-rutherford](https://github.com/shaun-rutherford))
+
+## [2025-08-21-1](https://github.com/openvoxproject/puppet-runtime/tree/2025-08-21-1) (2025-08-21)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/2025-08-10-1...2025-08-21-1)
+
+**Merged pull requests:**
+
+- Add Ubuntu 25.04 [\#46](https://github.com/OpenVoxProject/puppet-runtime/pull/46) ([genebean](https://github.com/genebean))
+- Some notes to make it clear what OpenSSL is being used [\#45](https://github.com/OpenVoxProject/puppet-runtime/pull/45) ([nmburgan](https://github.com/nmburgan))
+
+## [2025-08-10-1](https://github.com/openvoxproject/puppet-runtime/tree/2025-08-10-1) (2025-08-10)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202508061...2025-08-10-1)
+
+**Fixed bugs:**
+
+- Fix regexes [\#40](https://github.com/OpenVoxProject/puppet-runtime/pull/40) ([nmburgan](https://github.com/nmburgan))
+
+## [202508061](https://github.com/openvoxproject/puppet-runtime/tree/202508061) (2025-08-05)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202507082...202508061)
+
+**Implemented enhancements:**
+
+- Bump Ruby to 3.2.9, remove Boost from agent runtimes, remove PDK runtime [\#39](https://github.com/OpenVoxProject/puppet-runtime/pull/39) ([nmburgan](https://github.com/nmburgan))
+- Add component release info comments [\#34](https://github.com/OpenVoxProject/puppet-runtime/pull/34) ([nmburgan](https://github.com/nmburgan))
+
+## [202507082](https://github.com/openvoxproject/puppet-runtime/tree/202507082) (2025-07-08)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202507081...202507082)
+
+**Fixed bugs:**
+
+- Readd Amazon 2023 support [\#30](https://github.com/OpenVoxProject/puppet-runtime/pull/30) ([bastelfreak](https://github.com/bastelfreak))
+
+## [202507081](https://github.com/openvoxproject/puppet-runtime/tree/202507081) (2025-07-08)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202506191...202507081)
+
+**Implemented enhancements:**
+
+- Remove Puppet Enterprise leftovers [\#29](https://github.com/OpenVoxProject/puppet-runtime/pull/29) ([bastelfreak](https://github.com/bastelfreak))
+- Switch from facter to openfact [\#28](https://github.com/OpenVoxProject/puppet-runtime/pull/28) ([bastelfreak](https://github.com/bastelfreak))
+
+## [202506191](https://github.com/openvoxproject/puppet-runtime/tree/202506191) (2025-06-19)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202506181...202506191)
+
+**Fixed bugs:**
+
+- Fix Release Pipeline [\#26](https://github.com/OpenVoxProject/puppet-runtime/pull/26) ([bastelfreak](https://github.com/bastelfreak))
+
+## [202506181](https://github.com/openvoxproject/puppet-runtime/tree/202506181) (2025-06-18)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202505151...202506181)
+
+**Implemented enhancements:**
+
+- Update curl 8.13.0-\>8.14.1 [\#25](https://github.com/OpenVoxProject/puppet-runtime/pull/25) ([cvquesty](https://github.com/cvquesty))
+- Gemfile: Remove Gemfile.local support [\#23](https://github.com/OpenVoxProject/puppet-runtime/pull/23) ([bastelfreak](https://github.com/bastelfreak))
+- Set SOURCE\_DATE\_EPOCH for building [\#19](https://github.com/OpenVoxProject/puppet-runtime/pull/19) ([smortex](https://github.com/smortex))
+
+## [202505151](https://github.com/openvoxproject/puppet-runtime/tree/202505151) (2025-05-15)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202504291...202505151)
+
+**Implemented enhancements:**
+
+- Add Fedora 43 [\#18](https://github.com/OpenVoxProject/puppet-runtime/pull/18) ([nmburgan](https://github.com/nmburgan))
+
+## [202504291](https://github.com/openvoxproject/puppet-runtime/tree/202504291) (2025-04-29)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202504221...202504291)
+
+**Implemented enhancements:**
+
+- Add Debian 13 and amazon-2-x86\_64 [\#17](https://github.com/OpenVoxProject/puppet-runtime/pull/17) ([nmburgan](https://github.com/nmburgan))
+
+## [202504221](https://github.com/openvoxproject/puppet-runtime/tree/202504221) (2025-04-22)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202504211...202504221)
+
+## [202504211](https://github.com/openvoxproject/puppet-runtime/tree/202504211) (2025-04-21)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202504141...202504211)
+
+**Implemented enhancements:**
+
+- Use cmake3 for el7 [\#16](https://github.com/OpenVoxProject/puppet-runtime/pull/16) ([nmburgan](https://github.com/nmburgan))
+- Update lots of components [\#15](https://github.com/OpenVoxProject/puppet-runtime/pull/15) ([nmburgan](https://github.com/nmburgan))
+
+## [202504141](https://github.com/openvoxproject/puppet-runtime/tree/202504141) (2025-04-14)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202503221...202504141)
+
+**Implemented enhancements:**
+
+- Add Fedora 42 [\#14](https://github.com/OpenVoxProject/puppet-runtime/pull/14) ([nmburgan](https://github.com/nmburgan))
+
+## [202503221](https://github.com/openvoxproject/puppet-runtime/tree/202503221) (2025-03-22)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202503201...202503221)
+
+**Fixed bugs:**
+
+- Set paths back to PuppetLabs/Puppet on Windows [\#12](https://github.com/OpenVoxProject/puppet-runtime/pull/12) ([nmburgan](https://github.com/nmburgan))
+
+## [202503201](https://github.com/openvoxproject/puppet-runtime/tree/202503201) (2025-03-20)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502261...202503201)
+
+**Implemented enhancements:**
+
+- Changes for Windows OpenVox builds [\#10](https://github.com/OpenVoxProject/puppet-runtime/pull/10) ([nmburgan](https://github.com/nmburgan))
+
+## [202502261](https://github.com/openvoxproject/puppet-runtime/tree/202502261) (2025-02-26)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502251...202502261)
+
+## [202502251](https://github.com/openvoxproject/puppet-runtime/tree/202502251) (2025-02-26)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502203...202502251)
+
+**Implemented enhancements:**
+
+- Add Fedora 41 [\#6](https://github.com/OpenVoxProject/puppet-runtime/pull/6) ([nmburgan](https://github.com/nmburgan))
+
+## [202502203](https://github.com/openvoxproject/puppet-runtime/tree/202502203) (2025-02-20)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502202...202502203)
+
+**Implemented enhancements:**
+
+- Update ruby, curl, rexml, and semantic\_puppet [\#5](https://github.com/OpenVoxProject/puppet-runtime/pull/5) ([nmburgan](https://github.com/nmburgan))
+
+## [202502202](https://github.com/openvoxproject/puppet-runtime/tree/202502202) (2025-02-20)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502201...202502202)
+
+## [202502201](https://github.com/openvoxproject/puppet-runtime/tree/202502201) (2025-02-20)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502032...202502201)
+
+**Fixed bugs:**
+
+- Fix 7.x [\#3](https://github.com/OpenVoxProject/puppet-runtime/pull/3) ([nmburgan](https://github.com/nmburgan))
+
+## [202502032](https://github.com/openvoxproject/puppet-runtime/tree/202502032) (2025-02-03)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502031...202502032)
+
+## [202502031](https://github.com/openvoxproject/puppet-runtime/tree/202502031) (2025-02-02)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202502011...202502031)
+
+## [202502011](https://github.com/openvoxproject/puppet-runtime/tree/202502011) (2025-01-14)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202501082...202502011)
+
+## [202501082](https://github.com/openvoxproject/puppet-runtime/tree/202501082) (2025-01-09)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202501081...202501082)
+
+## [202501081](https://github.com/openvoxproject/puppet-runtime/tree/202501081) (2025-01-09)
+
+[Full Changelog](https://github.com/openvoxproject/puppet-runtime/compare/202501080...202501081)
+
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*

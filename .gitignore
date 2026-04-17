@@ -1,11 +1,12 @@
+/.vendor/
 vendor/*
 output/*
 .bundle
 gems
-Gemfile.local
 Gemfile.lock
 *.log
 ext/packaging
 ext/build_metadata*.json
 pkg
 *.swp
+.ruby-version

@@ -1,0 +1,278 @@
+project 'openbolt-runtime' do |proj|
+  # Used in component configurations to conditionally include dependencies
+  proj.setting(:runtime_project, 'openbolt')
+  proj.setting(:ruby_version, '3.2') # Leave the .Z out for Ruby 3.2
+  proj.setting(:openssl_version, '3.0')
+  # Legacy algos must be enabled in OpenSSL >= 3.0 for OpenBolt's WinRM transport to work.
+  proj.setting(:use_legacy_openssl_algos, true)
+
+  platform = proj.get_platform
+
+  proj.version_from_git
+  proj.generate_archives true
+  proj.generate_packages false
+
+  proj.description 'The OpenBolt runtime contains third-party components needed for OpenBolt standalone packaging'
+  proj.license 'See components'
+  proj.vendor 'Vox Pupuli <openvox@voxpupuli.org>'
+  proj.homepage 'https://github.com/OpenVoxProject'
+  proj.identifier 'org.voxpupuli'
+
+  if platform.is_windows?
+    proj.setting(:company_id, 'VoxPupuli')
+    proj.setting(:pl_company_id, 'PuppetLabs')
+    proj.setting(:product_id, 'OpenBolt')
+    proj.setting(:pl_product_id, 'Bolt')
+    if platform.architecture == 'x64'
+      proj.setting(:base_dir, 'ProgramFiles64Folder')
+    else
+      proj.setting(:base_dir, 'ProgramFilesFolder')
+    end
+    # We build for windows not in the final destination, but in the paths that correspond
+    # to the directory ids expected by WIX. This will allow for a portable installation (ideally).
+    proj.setting(:prefix, File.join('C:', proj.base_dir, proj.pl_company_id, proj.pl_product_id))
+  else
+    proj.setting(:prefix, '/opt/puppetlabs/bolt')
+  end
+
+  ruby_base_version = proj.ruby_version.gsub(/(\d+)\.(\d+)(\.\d+)?/, '\1.\2.0')
+
+  proj.setting(:ruby_dir, proj.prefix)
+  proj.setting(:bindir, File.join(proj.prefix, 'bin'))
+  proj.setting(:ruby_bindir, proj.bindir)
+  proj.setting(:libdir, File.join(proj.prefix, 'lib'))
+  proj.setting(:includedir, File.join(proj.prefix, 'include'))
+  proj.setting(:datadir, File.join(proj.prefix, 'share'))
+  proj.setting(:mandir, File.join(proj.datadir, 'man'))
+  proj.setting(:ruby_dir_base, File.join(proj.libdir, 'ruby'))
+  proj.setting(:ruby_dir_base_version, File.join(proj.ruby_dir_base, ruby_base_version))
+  proj.setting(:rubygems_dir, File.join(proj.ruby_dir_base_version, 'rubygems'))
+  proj.setting(:rubygems_ssl_dir, File.join(proj.rubygems_dir, 'ssl_certs'))
+
+  if platform.is_windows?
+    proj.setting(:host_ruby, File.join(proj.ruby_bindir, 'ruby.exe'))
+    proj.setting(:host_gem, File.join(proj.ruby_bindir, 'gem.bat'))
+
+    # For windows, we need to ensure we are building for mingw not cygwin
+    platform_triple = platform.platform_triple
+    host = "--host #{platform_triple}"
+  else
+    proj.setting(:host_ruby, File.join(proj.ruby_bindir, 'ruby'))
+    proj.setting(:host_gem, File.join(proj.ruby_bindir, 'gem'))
+  end
+
+  proj.setting(:gem_home, File.join(proj.libdir, 'ruby', 'gems', ruby_base_version))
+  proj.setting(:gem_install, "#{proj.host_gem} install --no-document --local --bindir=#{proj.ruby_bindir}")
+
+  proj.setting(:platform_triple, platform_triple)
+  proj.setting(:host, host)
+
+  # Define default CFLAGS and LDFLAGS for most platforms, and then
+  # tweak or adjust them as needed.
+  # Load default compiler settings
+  instance_eval File.read('configs/projects/_shared-compiler-settings.rb')
+
+  # Platform specific overrides or settings, which may override the defaults
+  if platform.is_windows?
+    proj.setting(:gcc_root, '/usr/x86_64-w64-mingw32/sys-root/mingw')
+    proj.setting(:gcc_bindir, "#{proj.gcc_root}/bin")
+    proj.setting(:tools_root, '/usr/x86_64-w64-mingw32/sys-root/mingw')
+    # If tools_root ever differs from gcc_root again, add it back here.
+    proj.setting(:cppflags, "-I#{proj.gcc_root}/include -I#{proj.gcc_root}/include/readline -I#{proj.includedir}")
+    proj.setting(:cflags, proj.cppflags)
+    proj.setting(:ldflags, "-L#{proj.gcc_root}/lib -L#{proj.libdir} -Wl,--nxcompat -Wl,--dynamicbase")
+    proj.setting(:cygwin, 'nodosfilewarning winsymlinks:native')
+  end
+
+  if platform.is_macos?
+    proj.setting(:deployment_target, '13.0')
+    targeting_flags = "-target #{platform.architecture}-apple-darwin22 -arch #{platform.architecture} -mmacos-version-min=13.0"
+    proj.setting(:cflags, "#{targeting_flags} #{proj.cflags}")
+    proj.setting(:cppflags, "#{targeting_flags} #{proj.cppflags}")
+    proj.setting(:cc, 'clang')
+    proj.setting(:cxx, 'clang++')
+    proj.setting(:ldflags, "-L#{proj.libdir}")
+  end
+
+  # These flags are applied in addition to the defaults in configs/component/openssl.rb.
+  proj.setting(:openssl_extra_configure_flags, [
+                 'no-dtls',
+                 'no-dtls1',
+                 'no-idea',
+                 'no-seed',
+                 'no-weak-ssl-ciphers',
+                 '-DOPENSSL_NO_HEARTBEATS'
+               ])
+
+  ########
+  # Components
+  # Use full blocks here, rather than single line logic so that
+  # automation can insert components as needed.
+  ########
+
+  # rubocop:disable Style/IfUnlessModifier
+
+  # Required to build ruby >=3.0.0
+  proj.component 'libffi'
+  proj.component 'libyaml'
+
+  # Ruby and deps
+  proj.component "openssl-#{proj.openssl_version}"
+  proj.component 'runtime-openbolt'
+  proj.component 'puppet-ca-bundle'
+  proj.component "ruby-#{proj.ruby_version}"
+
+  proj.component 'rubygem-bcrypt_pbkdf'
+  proj.component 'rubygem-ed25519'
+
+  # Puppet dependencies
+  proj.component 'rubygem-hocon'
+  proj.component 'rubygem-deep_merge'
+  proj.component 'rubygem-text'
+  proj.component 'rubygem-locale'
+  proj.component 'rubygem-gettext'
+  proj.component 'rubygem-fast_gettext'
+  proj.component 'rubygem-scanf'
+  proj.component 'rubygem-semantic_puppet'
+
+  # R10k dependencies
+  proj.component 'rubygem-gettext-setup'
+
+  # hiera-eyaml and its dependencies
+  proj.component 'rubygem-highline'
+  proj.component 'rubygem-optimist'
+  proj.component 'rubygem-hiera-eyaml'
+
+  # faraday and its dependencies
+  proj.component 'rubygem-faraday'
+  proj.component 'rubygem-faraday-em_http'
+  proj.component 'rubygem-em-http-request'
+  proj.component 'rubygem-http_parser.rb'
+  proj.component 'rubygem-eventmachine'
+  proj.component 'rubygem-em-socksify'
+  proj.component 'rubygem-cookiejar'
+  proj.component 'rubygem-faraday-em_synchrony'
+  proj.component 'rubygem-faraday-excon'
+  proj.component 'rubygem-excon'
+  proj.component 'rubygem-faraday-httpclient'
+  proj.component 'rubygem-faraday-multipart'
+  proj.component 'rubygem-faraday-net_http'
+  proj.component 'rubygem-net-http'
+  proj.component 'rubygem-faraday-net_http_persistent'
+  proj.component 'rubygem-faraday-patron'
+  proj.component 'rubygem-patron'
+  proj.component 'rubygem-faraday-rack'
+  proj.component 'rubygem-faraday-retry'
+  proj.component 'rubygem-faraday-follow_redirects'
+
+  # Core dependencies
+  proj.component 'rubygem-addressable'
+  proj.component 'rubygem-aws-eventstream'
+  proj.component 'rubygem-aws-partitions'
+  proj.component 'rubygem-aws-sdk-core'
+  proj.component 'rubygem-aws-sdk-ec2'
+  proj.component 'rubygem-aws-sigv4'
+  proj.component 'rubygem-bindata'
+  proj.component 'rubygem-builder'
+  proj.component 'rubygem-CFPropertyList'
+  proj.component 'rubygem-base64'
+  proj.component 'rubygem-rexml'
+  proj.component 'rubygem-colored2'
+  proj.component 'rubygem-concurrent-ruby'
+  proj.component 'rubygem-connection_pool'
+  proj.component 'rubygem-cri'
+  proj.component 'rubygem-erubi'
+  proj.component 'rubygem-openfact'
+  proj.component 'rubygem-ffi'
+  proj.component 'rubygem-gssapi'
+  proj.component 'rubygem-gyoku'
+  proj.component 'rubygem-hiera'
+  proj.component 'rubygem-httpclient'
+  proj.component 'rubygem-jmespath'
+  proj.component 'rubygem-jwt'
+  proj.component 'rubygem-little-plugger'
+  proj.component 'rubygem-log4r'
+  proj.component 'rubygem-logging'
+  proj.component 'rubygem-minitar'
+  proj.component 'rubygem-molinillo'
+  # TODO: multi_json will probably be obsolete for openbolt 6 - see https://github.com/OpenVoxProject/openvox/pull/293
+  proj.component 'rubygem-multi_json'
+  proj.component 'rubygem-multipart-post'
+  proj.component 'rubygem-net-http-persistent'
+  proj.component 'rubygem-net-scp'
+  proj.component 'rubygem-net-ssh'
+  proj.component 'rubygem-net-ssh-krb'
+  proj.component 'rubygem-nori'
+  proj.component 'rubygem-orchestrator_client'
+  proj.component 'rubygem-paint'
+  proj.component 'rubygem-public_suffix'
+  proj.component 'rubygem-openvox'
+  proj.component 'rubygem-puppet_forge'
+  proj.component 'rubygem-puppet-resource_api'
+  proj.component 'rubygem-puppetfile-resolver'
+  proj.component 'rubygem-r10k'
+  proj.component 'rubygem-rgen'
+  proj.component 'rubygem-rubyntlm'
+  proj.component 'rubygem-ruby_smb'
+  proj.component 'rubygem-rubyzip'
+  proj.component 'rubygem-sys-filesystem'
+  proj.component 'rubygem-terminal-table'
+  proj.component 'rubygem-thor'
+  proj.component 'rubygem-unicode-display_width'
+  proj.component 'rubygem-unicode-emoji'
+  proj.component 'rubygem-webrick'
+  proj.component 'rubygem-yard'
+  proj.component 'rubygem-openvox-strings'
+
+  # Choria dependencies
+  proj.component 'rubygem-systemu'
+  proj.component 'rubygem-nats-pure'
+  proj.component 'rubygem-choria-mcorpc-support'
+
+  # Core Windows dependencies
+  proj.component 'rubygem-windows_error'
+  proj.component 'rubygem-winrm'
+  proj.component 'rubygem-winrm-fs'
+
+  # Components from puppet-runtime included to support apply on localhost
+  # We only build ruby-selinux for EL, Fedora, Debian and Ubuntu (amd64/i386)
+  if platform.is_el? || platform.is_fedora? || platform.is_debian? || (platform.is_ubuntu? && platform.architecture !~ /ppc64el$/)
+    proj.component 'ruby-selinux'
+  end
+
+  # Non-windows specific components
+  unless platform.is_windows?
+    # C Augeas + deps
+    proj.component 'readline' if platform.is_macos?
+    proj.component 'augeas'
+    proj.component 'libxml2'
+    # Ruby Augeas and shadow
+    proj.component 'ruby-augeas'
+    proj.component 'ruby-shadow'
+  end
+
+  # Linux specific components
+  if platform.is_linux?
+    # DBus exists outside of Linux, but it's the most common platform to find it on
+    proj.component 'rubygem-ruby-dbus'
+  end
+
+  # rubocop:enable Style/IfUnlessModifier
+
+  # What to include in package?
+  proj.directory proj.prefix
+  proj.directory proj.bindir if platform.is_windows? || platform.is_macos?
+  proj.directory proj.libdir
+  proj.directory proj.includedir
+  proj.directory proj.datadir
+  proj.directory proj.mandir
+  proj.directory proj.ruby_dir_base
+  proj.directory proj.ruby_dir_base_version
+  proj.directory proj.rubygems_dir
+  proj.directory proj.rubygems_ssl_dir
+
+  # Export the settings for the current project and platform as yaml during builds
+  proj.publish_yaml_settings
+
+  proj.timeout 7200 if platform.is_windows?
+end

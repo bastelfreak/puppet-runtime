@@ -1,14 +1,13 @@
-component 'rubygem-concurrent-ruby' do |pkg, settings, platform|
-  # Projects may define a :rubygem_concurrent_ruby_version setting
-  version = settings[:rubygem_concurrent_ruby_version] || '1.2.3'
-  pkg.version version
-
-  case version
-  when '1.2.3'
-    pkg.sha256sum '82fdd3f8a0816e28d513e637bb2b90a45d7b982bdf4f3a0511722d2e495801e2'
-  else
-    raise "rubygem-concurrent-ruby #{version} has not been configured; Cannot continue."
-  end
+#####
+# Component release information:
+#   https://rubygems.org/gems/concurrent-ruby
+#   https://github.com/ruby-concurrency/concurrent-ruby/blob/master/CHANGELOG.md
+#####
+component 'rubygem-concurrent-ruby' do |pkg, _settings, _platform|
+  ### Maintained by update_gems automation ###
+  pkg.version '1.3.6'
+  pkg.sha256sum '6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab'
+  ### End automated maintenance section ###
 
   instance_eval File.read('configs/components/_base-rubygem.rb')
 end

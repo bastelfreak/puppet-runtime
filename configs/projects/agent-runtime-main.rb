@@ -1,18 +1,7 @@
 project 'agent-runtime-main' do |proj|
-
   # Set preferred component versions if they differ from defaults:
-  proj.setting :ruby_version, '3.2.8'
-  proj.setting :rubygem_deep_merge_version, '1.2.2'
+  proj.setting :ruby_version, '3.2' # Leave the .Z out for Ruby 3.2
   proj.setting :rubygem_highline_version, '3.0.1'
-  proj.setting :rubygem_hocon_version, '1.4.0'
-  proj.setting :rubygem_net_ssh_version, '7.2.3'
-
-  # Solaris and AIX depend on libedit which breaks augeas compliation starting with 1.13.0
-  if platform.is_solaris? || platform.name == 'aix-7.1-ppc'
-    proj.setting :augeas_version, '1.12.0'
-  else
-    proj.setting :augeas_version, '1.14.1'
-  end
 
   ########
   # Load shared agent settings
@@ -25,15 +14,13 @@ project 'agent-runtime-main' do |proj|
   ########
 
   # Directory for gems shared by puppet and puppetserver
-  proj.setting(:puppet_gem_vendor_dir, File.join(proj.libdir, "ruby", "vendor_gems"))
+  proj.setting(:puppet_gem_vendor_dir, File.join(proj.libdir, 'ruby', 'vendor_gems'))
 
   # Ruby 2.7 loads openssl on installation. Because pl-ruby was not
   # built with openssl support, we switch to compile with system
   # rubies.
   # Solaris 11 seems to work with pl-ruby, and 10 is handled in _shared-agent-settings.rb.
-  if platform.is_cross_compiled_linux?
-    proj.setting(:host_ruby, "/usr/bin/ruby")
-  end
+  proj.setting(:host_ruby, '/usr/bin/ruby') if platform.is_cross_compiled_linux?
 
   # Ruby 2.6 (RubyGems 3.0.1) removed the --ri and --rdoc
   # options. Switch to using --no-document which is available starting
@@ -42,49 +29,84 @@ project 'agent-runtime-main' do |proj|
   proj.setting(:gem_install, "#{proj.host_gem} install --no-document --local")
 
   ########
-  # Load shared agent components
+  # Components
+  # Use full blocks here, rather than single line logic so that
+  # automation can insert components as needed.
   ########
 
-  instance_eval File.read(File.join(File.dirname(__FILE__), '_shared-agent-components.rb'))
+  # rubocop:disable Style/IfUnlessModifier
 
-  ########
-  # Components specific to the main branch
-  ########
+  proj.component 'runtime-agent'
+  proj.component 'libffi'
+  proj.component 'libyaml'
+  proj.component "openssl-#{proj.openssl_version}"
 
-  # When adding components to this list, please
-  # add them to pe-installer-runtime-main as well
+  proj.component 'curl'
+  proj.component 'puppet-ca-bundle'
+  proj.component "ruby-#{proj.ruby_version}"
+
+  proj.component 'rubygem-base64'
   proj.component 'rubygem-concurrent-ruby'
-  proj.component 'rubygem-multi_json'
-  proj.component 'rubygem-optimist'
-  proj.component 'rubygem-highline'
+  proj.component 'rubygem-deep_merge'
+  proj.component 'rubygem-erubi'
+  proj.component 'rubygem-fast_gettext'
+  proj.component 'rubygem-ffi'
+  proj.component 'rubygem-gettext'
   proj.component 'rubygem-hiera-eyaml'
-  proj.component 'rubygem-thor'
+  proj.component 'rubygem-highline'
+  proj.component 'rubygem-hocon'
+  proj.component 'rubygem-locale'
+  proj.component 'rubygem-multi_json' # TODO: obsolete for openvox 9 - https://github.com/OpenVoxProject/openvox/pull/293
+  proj.component 'rubygem-net-ssh'
+  proj.component 'rubygem-optimist'
+  proj.component 'rubygem-semantic_puppet'
   proj.component 'rubygem-scanf'
+  proj.component 'rubygem-text'
+  proj.component 'rubygem-thor'
 
-  if platform.is_linux?
-    proj.component "virt-what"
-    proj.component "dmidecode" unless platform.architecture =~ /ppc64/
-  end
+  # We add rexml explicitly in here because even though ruby 3 ships with rexml as its default gem, the version
+  # of rexml it ships with can contain CVEs. So, we add it here to update to a higher version free from the CVEs.
+  proj.component 'rubygem-rexml'
 
   unless platform.is_windows?
+    proj.component 'augeas'
+    proj.component 'ruby-augeas'
+    proj.component 'libxml2'
     proj.component 'rubygem-sys-filesystem'
   end
 
-  # Nokogiri and dependencies to improve macOS performance (PUP-11332)
   if platform.is_macos?
-    proj.component 'rubygem-nokogiri'
-    proj.component 'rubygem-mini_portile2'
+    proj.component 'readline'
+    proj.component 'rubygem-CFPropertyList'
   end
 
-  # Dependencies for gettext for Ruby >= 3.2 (PA-4815)
-  proj.component 'rubygem-erubi'
-  proj.component 'rubygem-prime'
+  unless platform.is_aix? || platform.is_windows?
+    proj.component 'ruby-shadow'
+  end
 
-  # We are currently not building pxp-agent for Windows because it is unused for
-  # OpenVox aside from execution_wrapper which is soon to be replaced, and because
-  # we're having trouble getting things compiled correctly with the modern toolchain.
-  # For a Windows, only build these if BUILD_WINDOWS_PXP_AGENT is set.
-  # For other platforms, build these unless NO_PXP_AGENT is set.
-  build_for_pxp_agent = platform.is_windows? ? !ENV['BUILD_WINDOWS_PXP_AGENT'].to_s.empty? : ENV['NO_PXP_AGENT'].to_s.empty?
-  proj.component 'boost' if build_for_pxp_agent
+  # We only build ruby-selinux for EL, Fedora, Debian and Ubuntu (amd64/i386)
+  if platform.is_el? || platform.is_fedora? || platform.is_debian? || (platform.is_ubuntu? && platform.architecture !~ /ppc64el$/)
+    proj.component 'ruby-selinux'
+  end
+
+  # libedit is used instead of readline on these platforms
+  if platform.is_solaris?
+    proj.component 'libedit'
+  end
+
+  if platform.is_cross_compiled?
+    proj.component 'pl-ruby-patch'
+  end
+
+  if platform.is_windows? || platform.is_solaris? || platform.is_aix?
+    proj.component 'rubygem-minitar'
+  end
+
+  if platform.is_linux?
+    proj.component 'virt-what'
+    proj.component 'dmidecode' unless platform.architecture =~ /ppc64/
+    # DBus exists outside of Linux, but it's the most common platform to find it on
+    proj.component 'rubygem-ruby-dbus'
+  end
+  # rubocop:enable Style/IfUnlessModifier
 end

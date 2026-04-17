@@ -1,8 +1,18 @@
-component "rubygem-locale" do |pkg, settings, platform|
-  pkg.version "2.1.4"
-  pkg.md5sum "c324a7f34b94044f8d38eabff159de62"
+#####
+# Component release information:
+#   https://rubygems.org/gems/locale
+#   https://github.com/ruby-gettext/locale/releases
+#   (Not up to date) https://github.com/ruby-gettext/locale/blob/master/ChangeLog
+#####
+component 'rubygem-locale' do |pkg, settings, _platform|
+  ### Maintained by update_gems automation ###
+  pkg.version '2.1.5'
+  pkg.sha256sum '1c6803e8aa6bdb2c29e91945d095050601bf6d58474993575adf6f3b89b32ef4'
+  ### End automated maintenance section ###
 
   instance_eval File.read('configs/components/_base-rubygem.rb')
 
-  pkg.environment "GEM_HOME", (settings[:puppet_gem_vendor_dir] || settings[:gem_home])
+  # Overwrite the base rubygem's default GEM_HOME with the vendor gem directory
+  # shared by puppet and puppetserver. Fall-back to gem_home for other projects.
+  pkg.environment 'GEM_HOME', (settings[:puppet_gem_vendor_dir] || settings[:gem_home])
 end

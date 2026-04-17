@@ -1,16 +1,21 @@
-component 'rubygem-r10k' do |pkg, settings, platform|
-  version = settings[:rubygem_r10k_version] || '3.16.2'
-
-  case version
-  when '3.16.2'
-    pkg.version '3.16.2'
-    pkg.sha256sum '9775a726ba94a543bf49952b10dcd23690a54f5d2a361746b78b1292abe32eb9'
-  when '4.1.0'
-    pkg.version '4.1.0'
-    pkg.sha256sum '64e5b9e1a6cbb4006c96477d8c34ce589fe1c278117311f452d9f30b9cc86e4c'
-  else
-    raise "rubygem-r10k version #{version} is not supported"
-  end
+#####
+# Component release information:
+#   https://rubygems.org/gems/r10k
+#   https://github.com/puppetlabs/r10k/blob/main/CHANGELOG.mkd
+#####
+component 'rubygem-r10k' do |pkg, _settings, _platform|
+  ### Maintained by update_gems automation ###
+  pkg.version '5.0.3'
+  pkg.sha256sum 'a76daddd8cecdc1cf0816f3d19adb23782598d373344a9de23623f601d58a68b'
+  pkg.build_requires 'rubygem-colored2'
+  pkg.build_requires 'rubygem-cri'
+  pkg.build_requires 'rubygem-gettext-setup'
+  pkg.build_requires 'rubygem-jwt'
+  pkg.build_requires 'rubygem-log4r'
+  pkg.build_requires 'rubygem-minitar'
+  pkg.build_requires 'rubygem-multi_json'
+  pkg.build_requires 'rubygem-puppet_forge'
+  ### End automated maintenance section ###
 
   instance_eval File.read('configs/components/_base-rubygem.rb')
 end

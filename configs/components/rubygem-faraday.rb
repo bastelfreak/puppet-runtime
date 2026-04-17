@@ -1,16 +1,14 @@
-component 'rubygem-faraday' do |pkg, settings, platform|
-  version = settings[:rubygem_faraday_version] || '1.10.3'
-
-  case version
-  when '1.10.3'
-    pkg.version '1.10.3'
-    pkg.md5sum 'c7b56130721c0b055c071bec593e2446'
-  when '2.12.0'
-    pkg.version '2.12.0'
-    pkg.md5sum 'c0248b00a32c46b64cd2a172c96409ec' 
-  else
-    raise "rubygem-faraday version #{version} is not supported"
-  end
+#####
+# Component release information:
+#   https://rubygems.org/gems/faraday
+#   https://github.com/lostisland/faraday/releases
+#####
+component 'rubygem-faraday' do |pkg, _settings, _platform|
+  ### Maintained by update_gems automation ###
+  pkg.version '2.14.1'
+  pkg.sha256sum 'a43cceedc1e39d188f4d2cdd360a8aaa6a11da0c407052e426ba8d3fb42ef61c'
+  pkg.build_requires 'rubygem-faraday-net_http'
+  ### End automated maintenance section ###
 
   instance_eval File.read('configs/components/_base-rubygem.rb')
 end
