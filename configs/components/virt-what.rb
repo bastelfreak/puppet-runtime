@@ -6,6 +6,9 @@
 #   One of the first search results for this is
 #   https://github.com/chuckleb/virt-what, which you
 #   SHOULD NOT USE as this is a fork.
+#   The URL in virt-what.json uses artifacts.voxpupuli.org because the
+#   upstream site (people.redhat.com) was down on 2025-08-05. Revert to
+#   the original URL in the JSON next time the version is bumped.
 #####
 component 'virt-what' do |pkg, settings, platform|
   pkg.load_from_json('configs/components/virt-what.json')

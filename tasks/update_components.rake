@@ -46,7 +46,6 @@ def normalize_version(tag)
      .sub(/\Arefs\/tags\/v?/, '')
      .sub(/\Arelease-/, '')
      .sub(/\Aopenssl-/, '')
-     .sub(/\Arefs\/tags\//, '')
 end
 
 # Try to parse a version from a normalized string, returning nil if unparseable.
