@@ -11,6 +11,7 @@ def location_for(place)
 end
 
 gem 'artifactory'
+gem 'octokit', '~> 10.0'
 gem 'packaging', *location_for(ENV['PACKAGING_LOCATION'] || '~> 0.105')
 gem 'rake', '~> 13.0'
 gem 'rubocop', '~> 1.86'
