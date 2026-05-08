@@ -107,3 +107,19 @@ end
 ### End automated maintenance section ###
 ```
 The rake task will leave any lines it doesn't know about alone (in this case, the if/else/end logic) and update both checksums, with the default without the `# GEM TYPE` decorator being the `ruby` uncompiled gem. Try not to get too fancy with logic in here.
+
+## Updating non-rubygem components
+
+GitHub-backed JSON components in `configs/components` can be checked and updated with rake tasks.
+
+Print all outdated components:
+
+```
+$ bundle exec rake vox:print_outdated_components
+```
+
+Update all outdated components in place:
+
+```
+$ bundle exec rake vox:update_outdated_components
+```

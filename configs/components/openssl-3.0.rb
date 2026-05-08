@@ -6,9 +6,7 @@
 #   need to move to the 3.5.x LTS stream in the next year.
 #####
 component 'openssl' do |pkg, settings, platform|
-  pkg.version '3.0.20'
-  pkg.sha256sum 'c80a01dfc70ece4dc21168932c37739042d404d46ccc81a5986dd75314ecda6f'
-  pkg.url "https://github.com/openssl/openssl/releases/download/openssl-#{pkg.get_version}/openssl-#{pkg.get_version}.tar.gz"
+  pkg.load_from_json('configs/components/openssl-3.0.json')
   pkg.mirror "#{settings[:buildsources_url]}/openssl-#{pkg.get_version}.tar.gz"
 
   #############################

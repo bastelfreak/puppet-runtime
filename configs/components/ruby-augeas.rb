@@ -3,9 +3,7 @@
 #   https://github.com/hercules-team/ruby-augeas/releases
 #####
 component 'ruby-augeas' do |pkg, settings, platform|
-  pkg.version '0.6.0'
-  pkg.sha256sum '98158a54c655b4823439b4bd38609f01e0b912a3d1453144082b8a5f43b0c4dc'
-  pkg.url "https://github.com/hercules-team/ruby-augeas/releases/download/release-#{pkg.get_version}/ruby-augeas-#{pkg.get_version}.tgz"
+  pkg.load_from_json('configs/components/ruby-augeas.json')
   pkg.build_requires "ruby-#{settings[:ruby_version]}"
   pkg.build_requires 'augeas'
 

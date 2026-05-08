@@ -2,10 +2,7 @@
 # Component release information: https://github.com/curl/curl/releases
 #####
 component 'curl' do |pkg, settings, platform|
-  pkg.version '8.20.0'
-  pkg.sha256sum 'fc5819cad3f9f5482669adcdc49a782c15f36d2a0715b395b06d9173593d2dc0'
-
-  pkg.url "https://curl.se/download/curl-#{pkg.get_version}.tar.gz"
+  pkg.load_from_json('configs/components/curl.json')
   pkg.mirror "#{settings[:buildsources_url]}/curl-#{pkg.get_version}.tar.gz"
 
   pkg.build_requires "openssl-#{settings[:openssl_version]}"
