@@ -16,12 +16,6 @@ def github_client
   end
 end
 
-def checkable_component_paths
-  Dir[COMPONENTS_JSON_GLOB]
-    .sort
-    .reject { |path| File.basename(path).start_with?('rubygem-') }
-end
-
 # Extract GitHub owner and repo from a URL string.
 # Returns [owner, repo] or nil if not a GitHub URL.
 def github_owner_repo(url)
@@ -183,7 +177,10 @@ def check_component(path)
 end
 
 def component_results
-  checkable_component_paths.map { |path| check_component(path) }
+  Dir[COMPONENTS_JSON_GLOB]
+    .sort
+    .reject { |path| File.basename(path).start_with?('rubygem-') }
+    .map { |path| check_component(path) }
 end
 
 def print_component_results(results)
@@ -257,7 +254,4 @@ namespace :vox do
     abort 'One or more components could not be checked.' unless summary[:errors].empty?
     puts 'No component files needed changes.' if summary[:outdated].empty?
   end
-
-  desc 'Backward-compatible alias for vox:print_outdated_components'
-  task check_component_updates: :print_outdated_components
 end
