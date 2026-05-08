@@ -150,16 +150,13 @@ def check_component(path)
   name = File.basename(path, '.json')
   data = JSON.parse(File.read(path))
 
-  url = data['url'].to_s
-  ref = data['ref'].to_s
-
-  owner, repo = github_owner_repo(url)
+  owner, repo = github_owner_repo(data['url'])
 
   return { name: name, status: :skip, reason: 'No GitHub URL detected' } unless owner
 
   current_ver_str = current_version(data)
   current_ver = try_version(current_ver_str)
-  latest_tag = latest_upstream_tag(owner, repo, ref)
+  latest_tag = latest_upstream_tag(owner, repo, data['ref'])
 
   return { name: name, status: :error, reason: 'Could not determine latest upstream version' } if latest_tag.nil?
 
@@ -177,10 +174,7 @@ def check_component(path)
 end
 
 def component_results
-  Dir[COMPONENTS_JSON_GLOB]
-    .sort
-    .reject { |path| File.basename(path).start_with?('rubygem-') }
-    .map { |path| check_component(path) }
+  Dir[COMPONENTS_JSON_GLOB].map { |path| check_component(path) }
 end
 
 def print_component_results(results)
