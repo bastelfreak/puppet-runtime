@@ -54,10 +54,10 @@ end
 
 def latest_github_tag(owner, repo)
   github_client.tags("#{owner}/#{repo}", per_page: 100)
-    .map { |tag| [tag.name, try_version(normalize_version(tag.name))] }
-    .reject { |_, version| version.nil? || version.prerelease? }
-    .max_by { |_, version| version }
-    &.first
+               .map { |tag| [tag.name, try_version(normalize_version(tag.name))] }
+               .reject { |_, version| version.nil? || version.prerelease? }
+               .max_by { |_, version| version }
+               &.first
 rescue StandardError => e
   warn "  Warning: could not fetch tags for #{owner}/#{repo}: #{e}"
   nil
@@ -90,7 +90,7 @@ def download_digest(url, component_data)
   digest = checksum_algorithm(component_data)
   return nil if digest.nil?
 
-  URI.open(url, 'rb') do |io|
+  OpenURI.open_uri(url, 'rb') do |io|
     digest << io.read(1024 * 16) until io.eof?
   end
 
