@@ -73,16 +73,8 @@ def latest_upstream_tag(owner, repo, ref)
   end
 end
 
-def checksum_algorithm(component_data)
-  return Digest::SHA256.new if component_data.key?('sha256sum')
-  return Digest::MD5.new if component_data.key?('md5sum')
-
-  nil
-end
-
-def download_digest(url, component_data)
-  digest = checksum_algorithm(component_data)
-  return nil if digest.nil?
+def download_digest(url)
+  digest = Digest::SHA256.new
 
   OpenURI.open_uri(url, 'rb') do |io|
     digest << io.read(1024 * 16) until io.eof?
@@ -137,9 +129,8 @@ def update_component_file(path, latest_tag:, latest_version:)
     end
   end
 
-  digest = download_digest(data['url'], data)
-  data['sha256sum'] = digest if data.key?('sha256sum') && digest
-  data['md5sum'] = digest if data.key?('md5sum') && digest
+  digest = download_digest(data['url'])
+  data['sha256sum'] = digest
 
   File.write(path, "#{JSON.pretty_generate(data)}\n") if updated
 
