@@ -2,11 +2,9 @@
 # Component release information: https://github.com/mirror/dmidecode/tags
 #####
 component 'dmidecode' do |pkg, settings, platform|
-  pkg.version '3.7'
-  pkg.sha256sum '2c3aed12c85a1e6a9410d406d5e417c455466dc1bc7c89278bb32cf7cad91e8a'
+  pkg.load_from_json('configs/components/dmidecode.json')
 
   pkg.apply_patch 'resources/patches/dmidecode/dmidecode-install-to-bin.patch'
-  pkg.url "https://download-mirror.savannah.gnu.org/releases/dmidecode/dmidecode-#{pkg.get_version}.tar.xz"
   pkg.mirror "#{settings[:buildsources_url]}/dmidecode-#{pkg.get_version}.tar.xz"
 
   pkg.environment 'LDFLAGS', settings[:ldflags]

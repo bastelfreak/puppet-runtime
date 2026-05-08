@@ -7,9 +7,7 @@
 #               new version breaks anything.
 #####
 component 'readline' do |pkg, settings, platform|
-  pkg.version '8.1.2'
-  pkg.md5sum '12819fa739a78a6172400f399ab34f81'
-  pkg.url "http://ftp.gnu.org/gnu/#{pkg.get_name}/#{pkg.get_name}-#{pkg.get_version}.tar.gz"
+  pkg.load_from_json('configs/components/readline.json')
   pkg.mirror "#{settings[:buildsources_url]}/#{pkg.get_name}-#{pkg.get_version}.tar.gz"
 
   if platform.is_aix?

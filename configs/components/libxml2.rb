@@ -4,11 +4,7 @@
 #   https://github.com/GNOME/libxml2/tags
 #####
 component 'libxml2' do |pkg, settings, platform|
-  pkg.version '2.15.3'
-  pkg.sha256sum '78262a6e7ac170d6528ebfe2efccdf220191a5af6a6cd61ea4a9a9a5042c7a07'
-
-  libxml2_version_y = pkg.get_version.gsub(/(\d+)\.(\d+)(\.\d+)?/, '\1.\2')
-  pkg.url "https://download.gnome.org/sources/libxml2/#{libxml2_version_y}/libxml2-#{pkg.get_version}.tar.xz"
+  pkg.load_from_json('configs/components/libxml2.json')
   pkg.mirror "#{settings[:buildsources_url]}/libxml2-#{pkg.get_version}.tar.xz"
 
   if platform.is_aix?

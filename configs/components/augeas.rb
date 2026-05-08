@@ -4,9 +4,7 @@
 component 'augeas' do |pkg, settings, platform|
   # Solaris and AIX depend on libedit which breaks augeas compliation starting with 1.13.0.
   # Figure out a solution if we ever need to update augeas on those platforms.
-  pkg.version '1.14.1'
-  pkg.md5sum 'ac31216268b4b64809afd3a25f2515e5'
-  pkg.url "https://github.com/hercules-team/augeas/releases/download/release-#{pkg.get_version}/augeas-#{pkg.get_version}.tar.gz"
+  pkg.load_from_json('configs/components/augeas.json')
 
   pkg.apply_patch 'resources/patches/augeas/augeas-1.14.1-return_reg_enosys.patch'
 
