@@ -258,6 +258,6 @@ namespace :vox do
     puts 'No component files needed changes.' if summary[:outdated].empty?
   end
 
-  desc 'Print non-rubygem components with upstream GitHub updates'
+  desc 'Backward-compatible alias for vox:print_outdated_components'
   task check_component_updates: :print_outdated_components
 end
