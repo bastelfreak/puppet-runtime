@@ -93,9 +93,7 @@ def check_component(path)
 
   owner, repo = github_owner_repo(url)
 
-  unless owner
-    return { name: name, status: :skip, reason: 'No GitHub URL detected' }
-  end
+  return { name: name, status: :skip, reason: 'No GitHub URL detected' } unless owner
 
   # Determine current version
   current_ver_str = if ref =~ /refs\/tags\/(.*)/
@@ -106,13 +104,13 @@ def check_component(path)
   current_ver = try_version(current_ver_str)
 
   # Fetch latest upstream version
-  if ref.empty?
-    # Tarball release — check GitHub releases first, fall back to tags
-    latest_tag = latest_github_release(owner, repo) || latest_github_tag(owner, repo)
-  else
-    # Git ref — check tags
-    latest_tag = latest_github_tag(owner, repo)
-  end
+  # Tarball release — check GitHub releases first, fall back to tags
+  # Git ref — check tags
+  latest_tag = if ref.empty?
+                 latest_github_release(owner, repo) || latest_github_tag(owner, repo)
+               else
+                 latest_github_tag(owner, repo)
+               end
 
   return { name: name, status: :error, reason: 'Could not determine latest upstream version' } if latest_tag.nil?
 
@@ -187,8 +185,6 @@ namespace :vox do
       puts ''
     end
 
-    if outdated.empty? && errors.empty?
-      puts 'All components are up to date.'
-    end
+    puts 'All components are up to date.' if outdated.empty? && errors.empty?
   end
 end
